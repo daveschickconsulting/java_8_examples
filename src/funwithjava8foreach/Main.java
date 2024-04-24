@@ -37,6 +37,15 @@ public class Main {
          * Long hand version of secondExample
          */
         thirdExample();
+
+        System.out.println("\n");
+
+        /*
+         * A shorter way of accomplishing the thirdExample
+         */
+        fourthExample();
+
+        System.out.println("\n");
     }
 
     /**
@@ -44,8 +53,7 @@ public class Main {
      * the logic for each element in the List.
      */
     public static void firstExample(){
-        VacationPropertyConsumer amenitiesConsumer = new VacationPropertyConsumer();
-        LIST_OF_PROPERTIES.forEach(amenitiesConsumer);
+        LIST_OF_PROPERTIES.forEach(new VacationPropertyConsumer());
     }
 
     /**
@@ -77,7 +85,7 @@ public class Main {
     }
 
     /**
-     * The final example is a long-hand way of doing the same thing
+     * The third example is a long-hand way of doing the same thing
      * as example two.
      */
     public static void thirdExample() {
@@ -103,4 +111,30 @@ public class Main {
             }
         });
     }
+
+    /**
+     * The final example is another way to accomplish the same thing as
+     * example three.
+     */
+    public static void fourthExample() {
+        LIST_OF_PROPERTIES.forEach((vacationProperty) -> {
+            StringBuilder sb = new StringBuilder(vacationProperty.getName())
+                    .append(" has the following amenities: ");
+            if (vacationProperty.isParking()){
+                sb.append(" Parking ");
+            }
+            if (vacationProperty.isPool()){
+                sb.append(" Pool ");
+            }
+            if (vacationProperty.isRestaurant()){
+                sb.append(" Restaurant ");
+            }
+            if (vacationProperty.isSpa()){
+                sb.append(" Spa ");
+            }
+            vacationProperty.setSummary(sb.toString());
+            System.out.println(vacationProperty.getSummary());
+        });
+    }
+
 }
